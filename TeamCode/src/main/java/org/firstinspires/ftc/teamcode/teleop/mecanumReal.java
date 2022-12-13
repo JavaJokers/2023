@@ -56,7 +56,7 @@ public class mecanumReal extends LinearOpMode {
 
     public static Orientation angles;
     public static Acceleration gravity;
-    public static final int[] slidePosArray = {0, 12, 100};
+    public static final int[] slidePosArray = {0, 33, 50, 100};
 
     private int manualOrAuto = 0;
 
@@ -64,11 +64,13 @@ public class mecanumReal extends LinearOpMode {
     private boolean isX = false;
     private boolean isY = false;
     private boolean isA = false;
+    private boolean isB = false;
 
     //button press stuff
     private boolean wasX = false;
     private boolean wasY = false;
     private boolean wasA = false;
+    private boolean wasB = false;
 
     BNO055IMU imu = hardwareMap.get(BNO055IMU.class, "imu");
     BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -107,16 +109,16 @@ public class mecanumReal extends LinearOpMode {
         slideTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //set encoder behavior
-        slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_USING_ENCODER);
-        slideTwo.setMode(DcMotor.RunMode.RUN_WITHOUT_USING_ENCODER);
+        slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        slideTwo.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         //variables
-        int slidePos = 1;
+        int slidePos = 0;
 
         PIDController slideOneController = new PIDController(0.05, 0, 0, false);
         PIDController slideTwoController = new PIDController(0.05, 0, 0, false);
-        int targetPosition = 12;
+        int targetPosition = 0;
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -124,38 +126,25 @@ public class mecanumReal extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-
-
-            //button press stuff
-            if ((isX = gamepad1.x) && !wasX) {
-                manualOrAuto++;
-
+            //ground
+            if ((isA = gamepad1.a) && !wasA) {
+                slidePos = 0;
+            }
+            //high
+            else if ((isB = gamepad1.b) && !wasB) {
+                slidePos = 3;
+            }
+            //medium
+            else if ((isX = gamepad1.x) && !wasX) {
+                slidePos = 2;
+            }
+            //low
+            else if ((isY = gamepad1.y) && !wasY) {
+                slidePos = 1;
             }
 
-            //sets to manual control, or predetermined positions
-            if (manualOrAuto % 2 == 0) {
-                //y moves it up one position, a down one
-                if ((isY = gamepad1.y) && !wasY) {
-                    slidePos++;
-                } else if ((isA = gamepad1.a) && !wasA) {
-                    slidePos--;
-                }
-                //limits inside range
-                if (slidePos > 3) {
-                    slidePos = 3;
-                } else if (slidePos < 0) {
-                    slidePos = 0;
-                }
-                //sets target position to determined state
-                targetPosition = slidePosArray[slidePos];
-            } else {
-                //manual control
-                if (gamepad1.dpad_up) {
-                    targetPosition += 0.1;
-                } else if (gamepad1.dpad_down) {
-                    targetPosition -= 0.1;
-                }
-            }
+            //sets target position to determined state
+            targetPosition = slidePosArray[slidePos];
 
             // call "update" method and prepare motorPower
             double slideOnePower = slideOneController.update(targetPosition, slideOne.getCurrentPosition());
@@ -217,6 +206,7 @@ public class mecanumReal extends LinearOpMode {
             wasA = isA;
             wasX = isX;
             wasY = isY;
+            wasB = isB;
         }
 
     }
