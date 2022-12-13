@@ -107,15 +107,15 @@ public class mecanumReal extends LinearOpMode {
         slideTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //set encoder behavior
-        slideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        slideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_USING_ENCODER);
+        slideTwo.setMode(DcMotor.RunMode.RUN_WITHOUT_USING_ENCODER);
 
 
         //variables
         int slidePos = 1;
 
-        PIDController slideOneController = new PIDController(0.05, 0, 0, true);
-        PIDController slideTwoController = new PIDController(0.05, 0, 0, true);
+        PIDController slideOneController = new PIDController(0.05, 0, 0, false);
+        PIDController slideTwoController = new PIDController(0.05, 0, 0, false);
         int targetPosition = 12;
 
         // Wait for the game to start (driver presses PLAY)
@@ -141,8 +141,8 @@ public class mecanumReal extends LinearOpMode {
                     slidePos--;
                 }
                 //limits inside range
-                if (slidePos > 2) {
-                    slidePos = 2;
+                if (slidePos > 3) {
+                    slidePos = 3;
                 } else if (slidePos < 0) {
                     slidePos = 0;
                 }
