@@ -6,7 +6,7 @@
             <img src="https://user-images.githubusercontent.com/64339630/142298108-c8016318-a395-4e97-905b-0ed22e7263e8.png">
     </td>
     <td>
-        <br>This is our third year competing in the first tech competition.  We took twelfth at state last year + won the Judges Award, and this year we are hoping to play in eliminations + win one of the 7 primary awards.
+        <br>This is our third year competing in the first tech competition.  We took twelfth ranking at Wisconsin state regional last year, and won the Judges Award. This year we hope to rank in top 8, and either win one of the 7 primary awards or be a Finalist for the Inspire Award..
         
         "Graciousquirrelly Professional" - Statement Given by Servo Squirrel Alex Krostag
   </tr>
