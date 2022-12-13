@@ -125,20 +125,34 @@ public class mecanumReal extends LinearOpMode {
         while (opModeIsActive()) {
 
             //ground
-            if ((isA = gamepad1.a) && !wasA) {
-                slidePos = 0;
+              //button press stuff
+              if ((isX = gamepad1.x) && !wasX) {
+                manualOrAuto++;
             }
-            //high
-            else if ((isB = gamepad1.b) && !wasB) {
-                slidePos = 3;
-            }
-            //medium
-            else if ((isX = gamepad1.x) && !wasX) {
-                slidePos = 2;
-            }
-            //low
-            else if ((isY = gamepad1.y) && !wasY) {
-                slidePos = 1;
+
+            //sets to manual control, or predetermined positions
+            if (manualOrAuto % 2 == 0) {
+                //Y moves it up one position, A down one
+                if ((isY = gamepad1.y) && !wasY) {
+                    slidePos++;
+                } else if ((isA = gamepad1.a) && !wasA) {
+                    slidePos--;
+                }
+                //limits inside range
+                if (slidePos > 2) {
+                    slidePos = 2;
+                } else if (slidePos < 0) {
+                    slidePos = 0;
+                }
+                //sets target position to determined state
+                targetPosition = slidePosArray[slidePos];
+            } else {
+                //manual control
+                if (gamepad1.dpad_up) {
+                    targetPosition += 0.1;
+                } else if (gamepad1.dpad_down) {
+                    targetPosition -= 0.1;
+                }
             }
 
             //sets target position to determined state
