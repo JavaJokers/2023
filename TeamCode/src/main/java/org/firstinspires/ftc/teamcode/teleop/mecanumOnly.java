@@ -50,9 +50,9 @@ import org.firstinspires.ftc.teamcode.PIDController;
 import java.lang.reflect.Parameter;
 import java.util.Locale;
 
-@TeleOp(name = "mecanumReal", group = "Competition")
+@TeleOp(name = "mecanumOnly", group = "Competition")
 // @Disabled
-public class mecanumReal extends LinearOpMode {
+public class mecanumOnly extends LinearOpMode {
 
     public static Orientation angles;
     public static Acceleration gravity;
@@ -148,7 +148,7 @@ public class mecanumReal extends LinearOpMode {
                 imu.initialize(parameters);
             }
 
-        
+
         }
 
     }
