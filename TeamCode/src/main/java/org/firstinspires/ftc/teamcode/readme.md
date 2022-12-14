@@ -1,1 +1,0 @@
-Sam is the best programmer, and everyone else needs to make sure they stop forgetting semicolons
