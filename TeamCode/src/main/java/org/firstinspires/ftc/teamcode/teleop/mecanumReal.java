@@ -73,8 +73,7 @@ public class mecanumReal extends LinearOpMode {
   private boolean wasA = false;
   private boolean wasB = false;
 
-  BNO055IMU imu = hardwareMap.get(BNO055IMU.class, "imu");
-  BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+
 
   @Override
   public void runOpMode() throws InterruptedException {
@@ -86,6 +85,8 @@ public class mecanumReal extends LinearOpMode {
     DcMotor slideOne = hardwareMap.dcMotor.get("slide_one");
     DcMotor slideTwo = hardwareMap.dcMotor.get("slide_two");
 
+    BNO055IMU imu = hardwareMap.get(BNO055IMU.class, "imu");
+    BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
     imu.initialize(parameters);
 
     telemetry.addData("Status", "Initialized");
@@ -189,12 +190,13 @@ public class mecanumReal extends LinearOpMode {
       double x = gamepad1.left_stick_x * 1.1;
       double y = -gamepad1.left_stick_y;
       double t = gamepad1.right_stick_x;
+      double botHeading = -imu.getAngularOrientation().firstAngle;
 
       // rotation
       double x_rotated =
-        x * Math.cos(angles.firstAngle) - y * Math.sin(angles.firstAngle);
+        x * Math.cos(botHeading) - y * Math.sin(botHeading);
       double y_rotated =
-        x * Math.sin(angles.firstAngle) + y * Math.cos(angles.firstAngle);
+        x * Math.sin(botHeading) + y * Math.cos(botHeading);
 
       // x, y, theta input mixing
       double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(t), 1);
@@ -232,8 +234,8 @@ public class mecanumReal extends LinearOpMode {
       wasY = isY;
       wasB = isB;
       
-      telemetry.addData("Slide 1 Ticks:", slideOneTicks)
-      telemetry.addData("Slide 2 Ticks:", slideTwoTicks)
+      telemetry.addData("Slide 1 Ticks:", slideOneTicks);
+      telemetry.addData("Slide 2 Ticks:", slideTwoTicks);
       telemetry.addData("AUtoSlides:", autoSlides);
     }
   }
