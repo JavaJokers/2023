@@ -120,14 +120,17 @@ public class mecanumReal extends LinearOpMode {
 
     // run until the end of the match (driver presses STOP)
     while (opModeIsActive()) {
+      
+      //change autoSlides setting
       if (gamepad1.dpad_left) {
         autoSlides = false;
       } else if (gamepad1.dpad_right) {
         autoSlides = true;
       }
 
-      //ground
+      //autoSlides on
       if (autoSlides) {
+        //ground
         if ((isA = gamepad1.a) && !wasA) {
           slidePos = 0;
         }
@@ -143,15 +146,21 @@ public class mecanumReal extends LinearOpMode {
         else if ((isY = gamepad1.y) && !wasY) {
           slidePos = 1;
         }
+        //sets target position to determined state
         targetPosition = slidePosArray[slidePos];
-      } else {
+      }
+      
+      //auto slides off
+      else {
+        //manual slides up
         if (gamepad1.dpad_up) {
           targetPosition++;
-        } else if (gamepad1.dpad_down) {
+        }
+        //manual slides down
+        else if (gamepad1.dpad_down) {
           targetPosition--;
         }
       }
-      //sets target position to determined state
 
       // call "update" method and prepare motorPower
       double slideOnePower = slideOneController.update(
