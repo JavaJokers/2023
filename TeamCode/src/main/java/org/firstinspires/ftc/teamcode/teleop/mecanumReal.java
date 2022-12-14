@@ -51,6 +51,9 @@ import org.firstinspires.ftc.teamcode.PIDController;
 @TeleOp(name = "mecanumReal", group = "Competition")
 // @Disabled
 public class mecanumReal extends LinearOpMode {
+  
+  int slideOneTicks = 0;
+  int slideTwoTicks = 0;
 
   public static Orientation angles;
   public static Acceleration gravity;
@@ -229,6 +232,8 @@ public class mecanumReal extends LinearOpMode {
       wasY = isY;
       wasB = isB;
       
+      telemetry.addData("Slide 1 Ticks:", slideOneTicks)
+      telemetry.addData("Slide 2 Ticks:", slideTwoTicks)
       telemetry.addData("AUtoSlides:", autoSlides);
     }
   }
