@@ -228,6 +228,8 @@ public class mecanumReal extends LinearOpMode {
       wasX = isX;
       wasY = isY;
       wasB = isB;
+      
+      telemetry.addData("AUtoSlides:", autoSlides);
     }
   }
 }
