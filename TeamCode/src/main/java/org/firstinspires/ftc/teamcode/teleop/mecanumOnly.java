@@ -56,21 +56,8 @@ public class mecanumReal extends LinearOpMode {
 
     public static Orientation angles;
     public static Acceleration gravity;
-    public static final int[] slidePosArray = {0, 33, 50, 100};
 
-    private int manualOrAuto = 0;
 
-    //button press
-    private boolean isX = false;
-    private boolean isY = false;
-    private boolean isA = false;
-    private boolean isB = false;
-
-    //button press stuff
-    private boolean wasX = false;
-    private boolean wasY = false;
-    private boolean wasA = false;
-    private boolean wasB = false;
 
     BNO055IMU imu = hardwareMap.get(BNO055IMU.class, "imu");
     BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -84,8 +71,7 @@ public class mecanumReal extends LinearOpMode {
         DcMotor lB = hardwareMap.dcMotor.get("back_left");
         DcMotor rF = hardwareMap.dcMotor.get("front_right");
         DcMotor rB = hardwareMap.dcMotor.get("back_right");
-        DcMotor slideOne = hardwareMap.dcMotor.get("slide_one");
-        DcMotor slideTwo = hardwareMap.dcMotor.get("slide_two");
+
 
         imu.initialize(parameters);
 
@@ -97,70 +83,22 @@ public class mecanumReal extends LinearOpMode {
         rF.setDirection(DcMotor.Direction.REVERSE);
         lB.setDirection(DcMotor.Direction.FORWARD);
         rB.setDirection(DcMotor.Direction.REVERSE);
-        slideOne.setDirection(DcMotor.Direction.REVERSE);
-        slideTwo.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set zero power behavior
         lF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         lB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        slideTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        //set encoder behavior
-        slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        slideTwo.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
-        //variables
-        int slidePos = 0;
 
-        PIDController slideOneController = new PIDController(0.05, 0, 0, false);
-        PIDController slideTwoController = new PIDController(0.05, 0, 0, false);
-        int targetPosition = 0;
+
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-
-            //ground
-            if(manualOrAuto % 2 == 0) {
-                if ((isA = gamepad1.a) && !wasA) {
-                    slidePos = 0;
-                }
-                //high
-                else if ((isB = gamepad1.b) && !wasB) {
-                    slidePos = 3;
-                }
-                //medium
-                else if ((isX = gamepad1.x) && !wasX) {
-                    slidePos = 2;
-                }
-                //low
-                else if ((isY = gamepad1.y) && !wasY) {
-                    slidePos = 1;
-                }
-                targetPosition = slidePosArray[slidePos];
-            } else{
-                if(gamepad1.dpad_up){
-                    targetPosition++;
-                } else if(gamepad1.dpad_down){
-                    targetPosition--;
-                }
-            }
-            //sets target position to determined state
-
-
-            // call "update" method and prepare motorPower
-            double slideOnePower = slideOneController.update(targetPosition, slideOne.getCurrentPosition());
-            double slideTwoPower = slideTwoController.update(targetPosition, slideTwo.getCurrentPosition());
-
-            // assign motor the PID output
-            slideOne.setPower(slideOnePower);
-            slideTwo.setPower(slideTwoPower);
 
             // Setup a variable for each drive wheel to save power level for telemetry
             double frontLeftPower;
@@ -210,11 +148,7 @@ public class mecanumReal extends LinearOpMode {
                 imu.initialize(parameters);
             }
 
-            //one button press does one thing
-            wasA = isA;
-            wasX = isX;
-            wasY = isY;
-            wasB = isB;
+        
         }
 
     }
