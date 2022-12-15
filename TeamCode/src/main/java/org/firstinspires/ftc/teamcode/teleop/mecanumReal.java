@@ -112,6 +112,10 @@ public class mecanumReal extends LinearOpMode {
     slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     slideTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+    //set default target position
+    slideOne.setTargetPosition(0);
+    slideTwo.setTargetPosition(0);
+
     //set encoder behavior
     slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     slideTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
