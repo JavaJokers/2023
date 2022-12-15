@@ -117,7 +117,6 @@ public class mecanumReal extends LinearOpMode {
 
     PIDController slideOneController = new PIDController(0.05, 0, 0, false);
     PIDController slideTwoController = new PIDController(0.05, 0, 0, false);
-    int targetPosition = 0;
 
     // Wait for the game to start (driver presses PLAY)
     waitForStart();
@@ -151,28 +150,31 @@ public class mecanumReal extends LinearOpMode {
           slidePos = 1;
         }
         //sets target position to determined state
-        targetPosition = slidePosArray[slidePos];
+        slideOne.setTargetPosition(slidePosArray[slidePos]);
+        slideTwo.setTargetPosition(slidePosArray[slidePos]);
       }
       
       //auto slides off
       else {
         //manual slides up
         if (gamepad1.dpad_up) {
-          targetPosition++;
+          slideOne.setTargetPosition(slideOne.getTargetPosition++);
+          slideTwo.setTargetPosition(slideTwo.getTargetPosition++);
         }
         //manual slides down
         else if (gamepad1.dpad_down) {
-          targetPosition--;
+          slideOne.setTargetPosition(slideOne.getTargetPosition--);
+          slideTwo.setTargetPosition(slideTwo.getTargetPosition--);
         }
       }
 
       // call "update" method and prepare motorPower
       double slideOnePower = slideOneController.update(
-        targetPosition,
+        slideOne.getTargetPosition(),
         slideOne.getCurrentPosition()
       );
       double slideTwoPower = slideTwoController.update(
-        targetPosition,
+        slideTwo.getTargetPosition(),
         slideTwo.getCurrentPosition()
       );
 
