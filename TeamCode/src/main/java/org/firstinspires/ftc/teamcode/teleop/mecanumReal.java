@@ -236,7 +236,7 @@ public class mecanumReal extends LinearOpMode {
       
       telemetry.addData("Slide 1 Ticks:", slideOneTicks);
       telemetry.addData("Slide 2 Ticks:", slideTwoTicks);
-      telemetry.addData("AUtoSlides:", autoSlides);
+      telemetry.addData("AutoSlides:", autoSlides);
     }
   }
 }
