@@ -108,6 +108,10 @@ public class mecanumReal extends LinearOpMode {
     slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     slideTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+    //reset encoders
+    slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    slideTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     //set encoder behavior
     slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     slideTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
