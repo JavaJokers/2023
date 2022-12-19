@@ -66,12 +66,16 @@ public class mecanumReal extends LinearOpMode {
   private boolean isY = false;
   private boolean isA = false;
   private boolean isB = false;
+  private boolean isUp = false;
+  private boolean isDown = false;
 
   //button press stuff
   private boolean wasX = false;
   private boolean wasY = false;
   private boolean wasA = false;
   private boolean wasB = false;
+  private boolean wasUp = false;
+  private boolean wasDown = false;
 
 
 
@@ -123,8 +127,8 @@ public class mecanumReal extends LinearOpMode {
     //variables
     int slidePos = 0;
 
-    PIDController slideOneController = new PIDController(0.05, 0, 0, false);
-    PIDController slideTwoController = new PIDController(0.05, 0, 0, false);
+    PIDController slideOneController = new PIDController(0.01, 0, 0, false);
+    PIDController slideTwoController = new PIDController(0.01, 0, 0, false);
 
     // Wait for the game to start (driver presses PLAY)
     waitForStart();
@@ -165,14 +169,14 @@ public class mecanumReal extends LinearOpMode {
       //auto slides off
       else {
         //manual slides up
-        if (gamepad1.dpad_up) {
+        if ((isUp = gamepad1.dpad_up) && !wasUp) {
           slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
           slideTwo.setTargetPosition(slideTwo.getTargetPosition() + 1);
         }
         //manual slides down
-        else if (gamepad1.dpad_down) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
-          slideTwo.setTargetPosition(slideTwo.getTargetPosition() + 1);
+        else if ((isDown = gamepad1.dpad_down) && !wasDown) {
+          slideOne.setTargetPosition(slideOne.getTargetPosition() - 1);
+          slideTwo.setTargetPosition(slideTwo.getTargetPosition() - 1);
         }
       }
 
@@ -243,8 +247,10 @@ public class mecanumReal extends LinearOpMode {
       wasX = isX;
       wasY = isY;
       wasB = isB;
+      wasUp = isUp;
+      wasDown = isDown;
 
-      telemetry.addData("Slide 1 Ticks:", slideOneTicks);
+      telemetry.addData("Slide 1 Ticks:", slideOneTickas);
       telemetry.addData("Slide 2 Ticks:", slideTwoTicks);
       telemetry.addData("Slide 1 Power:", slideOnePower);
       telemetry.addData("Slide 2 Power:", slideTwoPower);
