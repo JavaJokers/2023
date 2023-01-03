@@ -1,1 +1,1 @@
-Henry and Alex are the best programmers, and everyone else needs to make dont f*ing use the motors on the slides when we're still trying to test what direction the motor is and nothings finished bring strung yet despite them being told about how we needed to test before running the full motor power SEVERAL times in the day prior to the incident where the string split in half :/
+Alex needs to do a better job of programming, and he should've put a failsafe in so the slides didn't get broken.  He also needs to tune the PIDs.

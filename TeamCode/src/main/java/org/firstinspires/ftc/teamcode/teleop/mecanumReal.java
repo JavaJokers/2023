@@ -250,7 +250,7 @@ public class mecanumReal extends LinearOpMode {
       wasUp = isUp;
       wasDown = isDown;
 
-      telemetry.addData("Slide 1 Ticks:", slideOneTickas);
+      telemetry.addData("Slide 1 Ticks:", slideOneTicks);
       telemetry.addData("Slide 2 Ticks:", slideTwoTicks);
       telemetry.addData("Slide 1 Power:", slideOnePower);
       telemetry.addData("Slide 2 Power:", slideTwoPower);
