@@ -201,10 +201,10 @@ public class mecanumReal extends LinearOpMode {
       slideOne.setPower(slideOnePower);
 
 
-      if(gamepad1.right_stick_button){
+      if(gamepad1.right_trigger == 1){
         clawLeft.setPosition(clawClosed);
         clawRight.setPosition(clawClosed);
-      } else if(gamepad1.left_stick_button){
+      } else if(gamepad1.left_trigger == 1){
         clawLeft.setPosition(clawOpen);
         clawRight.setPosition(clawOpen);
       }
@@ -255,7 +255,7 @@ public class mecanumReal extends LinearOpMode {
       }
 
       // reinitialize field oriented
-      if (gamepad1.left_trigger == 1 && gamepad1.right_trigger == 1) {
+      if (gamepad1.left_stick_button && gamepad1.right_stick_button) {
         imu.initialize(parameters);
       }
 
