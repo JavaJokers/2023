@@ -124,9 +124,6 @@ public class mecanumReal extends LinearOpMode {
     //reset encoders
     slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    //set default target position
-    slideOne.setTargetPosition(0);
-
     //set encoder behavior
     slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -134,6 +131,17 @@ public class mecanumReal extends LinearOpMode {
     int slidePos = 0;
 
     PIDController slideOneController = new PIDController(0.01, 0, 0, false);
+
+    //set default target position
+    slideOne.setTargetPosition(0);
+
+    clawLeft.setPosition(clawOpen);
+    clawRight.setPosition(clawOpen);
+
+    sleep(5000);
+
+    clawLeft.setPosition(clawClosed);
+    clawRight.setPosition(clawClosed);
 
     // Wait for the game to start (driver presses PLAY)
     waitForStart();
@@ -191,6 +199,16 @@ public class mecanumReal extends LinearOpMode {
 
       // assign motor the PID output
       slideOne.setPower(slideOnePower);
+
+
+      if(gamepad1.right_stick_button){
+        clawLeft.setPosition(clawClosed);
+        clawRight.setPosition(clawClosed);
+      } else if(gamepad1.left_stick_button){
+        clawLeft.setPosition(clawOpen);
+        clawRight.setPosition(clawOpen);
+      }
+
 
 
       // Setup a variable for each drive wheel to save power level for telemetry
