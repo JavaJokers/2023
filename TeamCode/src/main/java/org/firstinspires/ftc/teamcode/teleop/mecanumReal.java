@@ -59,6 +59,9 @@ public class mecanumReal extends LinearOpMode {
   public static Acceleration gravity;
   public static final int[] slidePosArray = { 0, 33, 50, 100 };
 
+  public static final double clawOpen = 0.2;
+  public static final double clawClosed = 0.5;
+
   private boolean autoSlides = true;
 
   //button press
@@ -87,6 +90,8 @@ public class mecanumReal extends LinearOpMode {
     DcMotor rF = hardwareMap.dcMotor.get("front_right");
     DcMotor rB = hardwareMap.dcMotor.get("back_right");
     DcMotor slideOne = hardwareMap.dcMotor.get("slide_one");
+    Servo clawLeft = hardwareMap.servo.get("claw_left");
+    Servo clawRight = hardwareMap.servo.get("claw_right");
 
     BNO055IMU imu = hardwareMap.get(BNO055IMU.class, "imu");
     BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -108,6 +113,13 @@ public class mecanumReal extends LinearOpMode {
     lB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     rB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+    //servo setting
+    clawLeft.scaleRange(0.0, 0.2);
+    clawLeft.setDirection(Servo.Direction.REVERSE);
+    clawRight.scaleRange(0.0, 0.2);
+    clawRight.setDirection(Servo.Direction.FORWARD);
+
 
     //reset encoders
     slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
