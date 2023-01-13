@@ -53,7 +53,7 @@ import org.firstinspires.ftc.teamcode.PIDController;
 public class mecanumReal extends LinearOpMode {
 
   int slideOneTicks = 0;
-  int slideTwoTicks = 0;
+
 
   public static Orientation angles;
   public static Acceleration gravity;
@@ -87,7 +87,6 @@ public class mecanumReal extends LinearOpMode {
     DcMotor rF = hardwareMap.dcMotor.get("front_right");
     DcMotor rB = hardwareMap.dcMotor.get("back_right");
     DcMotor slideOne = hardwareMap.dcMotor.get("slide_one");
-    DcMotor slideTwo = hardwareMap.dcMotor.get("slide_two");
 
     BNO055IMU imu = hardwareMap.get(BNO055IMU.class, "imu");
     BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -102,7 +101,6 @@ public class mecanumReal extends LinearOpMode {
     lB.setDirection(DcMotor.Direction.FORWARD);
     rB.setDirection(DcMotor.Direction.REVERSE);
     slideOne.setDirection(DcMotor.Direction.REVERSE);
-    slideTwo.setDirection(DcMotorSimple.Direction.REVERSE);
 
     // Set zero power behavior
     lF.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -110,25 +108,20 @@ public class mecanumReal extends LinearOpMode {
     lB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     rB.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-    slideTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     //reset encoders
     slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    slideTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     //set default target position
     slideOne.setTargetPosition(0);
-    slideTwo.setTargetPosition(0);
 
     //set encoder behavior
     slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    slideTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     //variables
     int slidePos = 0;
 
     PIDController slideOneController = new PIDController(0.01, 0, 0, false);
-    PIDController slideTwoController = new PIDController(0.01, 0, 0, false);
 
     // Wait for the game to start (driver presses PLAY)
     waitForStart();
@@ -163,7 +156,6 @@ public class mecanumReal extends LinearOpMode {
         }
         //sets target position to determined state
         slideOne.setTargetPosition(slidePosArray[slidePos]);
-        slideTwo.setTargetPosition(slidePosArray[slidePos]);
       }
 
       //auto slides off
@@ -171,12 +163,10 @@ public class mecanumReal extends LinearOpMode {
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
           slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
-          slideTwo.setTargetPosition(slideTwo.getTargetPosition() + 1);
         }
         //manual slides down
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
           slideOne.setTargetPosition(slideOne.getTargetPosition() - 1);
-          slideTwo.setTargetPosition(slideTwo.getTargetPosition() - 1);
         }
       }
 
@@ -185,14 +175,11 @@ public class mecanumReal extends LinearOpMode {
         slideOne.getTargetPosition(),
         slideOne.getCurrentPosition()
       );
-      double slideTwoPower = slideTwoController.update(
-        slideTwo.getTargetPosition(),
-        slideTwo.getCurrentPosition()
-      );
+
 
       // assign motor the PID output
       slideOne.setPower(slideOnePower);
-      slideTwo.setPower(slideTwoPower);
+
 
       // Setup a variable for each drive wheel to save power level for telemetry
       double frontLeftPower;
@@ -251,11 +238,8 @@ public class mecanumReal extends LinearOpMode {
       wasDown = isDown;
 
       telemetry.addData("Slide 1 Ticks:", slideOneTicks);
-      telemetry.addData("Slide 2 Ticks:", slideTwoTicks);
       telemetry.addData("Slide 1 Power:", slideOnePower);
-      telemetry.addData("Slide 2 Power:", slideTwoPower);
       telemetry.addData("Slide 1 Target:", slideOne.getTargetPosition());
-      telemetry.addData("Slide 2 Target:", slideTwo.getTargetPosition());
       telemetry.addData("AutoSlides:", autoSlides);
       telemetry.update();
     }
