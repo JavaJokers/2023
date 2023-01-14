@@ -52,6 +52,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.PIDController;
+import org.firstinspires.ftc.teamcode.commands.servoCommand;
 
 @TeleOp(name = "clawTesting", group = "Testing")
 // @Disabled
@@ -81,13 +82,11 @@ public class clawTesting extends LinearOpMode {
 
 
 
-        clawLeft.setPosition(clawOpenLeft);
-        clawRight.setPosition(clawOpenRight);
-//
-//        sleep(5000);
-//
-//        clawLeft.setPosition(clawClosedLeft);
-//        clawRight.setPosition(clawClosedRight);
+        servoCommand.clawOpen(clawLeft, clawRight);
+
+        sleep(5000);
+
+        servoCommand.clawClose(clawLeft, clawRight);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -97,11 +96,9 @@ public class clawTesting extends LinearOpMode {
 
 //
             if(gamepad1.right_trigger == 1){
-                clawLeft.setPosition(clawClosedLeft);
-                clawRight.setPosition(clawClosedRight);
+                servoCommand.clawClose(clawLeft, clawRight);
             } else if(gamepad1.left_trigger == 1){
-                clawLeft.setPosition(clawOpenLeft);
-                clawRight.setPosition(clawOpenRight);
+                servoCommand.clawOpen(clawLeft, clawRight);
             }
 
 

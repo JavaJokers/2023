@@ -33,6 +33,8 @@ import static org.firstinspires.ftc.teamcode.constants.servos.clawClosedLeft;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawClosedRight;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenLeft;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenRight;
+import static org.firstinspires.ftc.teamcode.constants.slides.slidePosArray;
+import static org.firstinspires.ftc.teamcode.constants.slides.slideOnePID;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
@@ -62,7 +64,6 @@ public class mecanumReal extends LinearOpMode {
 
   public static Orientation angles;
   public static Acceleration gravity;
-  public static final int[] slidePosArray = { 0, 33, 50, 100 };
 
   private boolean autoSlides = true;
 
@@ -132,7 +133,7 @@ public class mecanumReal extends LinearOpMode {
     //variables
     int slidePos = 0;
 
-    PIDController slideOneController = new PIDController(0.01, 0, 0, false);
+    PIDController slideOneController = new PIDController(slideOnePID[0], slideOnePID[1], slideOnePID[2], false);
 
     //set default target position
     slideOne.setTargetPosition(0);
