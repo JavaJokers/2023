@@ -84,6 +84,8 @@ public class slideTestingPID extends LinearOpMode {
         //reset encoders
         slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        slideOne.setTargetPosition(0);
+
         //set encoder behavior
         slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
