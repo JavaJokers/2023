@@ -222,7 +222,7 @@ public class mecanumReal extends LinearOpMode {
       // set gamepad values
       double x = gamepad1.left_stick_x * 1.1;
       double y = -gamepad1.left_stick_y;
-      double t = gamepad1.right_stick_x;
+      double t = gamepad1.right_stick_x * 0.5;
       double botHeading = -imu.getAngularOrientation().firstAngle;
 
       // rotation
