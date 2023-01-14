@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode.testing;
 
+import static org.firstinspires.ftc.teamcode.constants.slides.slideOnePID;
 import static org.firstinspires.ftc.teamcode.constants.slides.slidePosArray;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -89,7 +90,7 @@ public class slideTestingPID extends LinearOpMode {
         //variables
         int slidePos = 0;
 
-        PIDController slideOneController = new PIDController(0.01, 0, 0, false);
+        PIDController slideOneController = new PIDController(slideOnePID[0], slideOnePID[1], slideOnePID[2], false);
 
         //set default target position
         slideOne.setTargetPosition(0);
@@ -119,11 +120,11 @@ public class slideTestingPID extends LinearOpMode {
                     slidePos = 3;
                 }
                 //medium
-                else if ((isX = gamepad1.x) && !wasX) {
+                else if ((isY = gamepad1.y) && !wasY) {
                     slidePos = 2;
                 }
                 //low
-                else if ((isY = gamepad1.y) && !wasY) {
+                else if ((isX = gamepad1.x) && !wasX) {
                     slidePos = 1;
                 }
                 //sets target position to determined state

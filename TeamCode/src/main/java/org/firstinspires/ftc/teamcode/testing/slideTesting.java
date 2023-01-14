@@ -103,7 +103,7 @@ slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            slideOne.setPower(-gamepad1.left_stick_y / 100);
+            slideOne.setPower(-gamepad1.left_stick_y / 10);
 
 
 
