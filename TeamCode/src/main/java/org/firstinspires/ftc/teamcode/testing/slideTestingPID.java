@@ -79,11 +79,10 @@ public class slideTestingPID extends LinearOpMode {
         // Set zero power behavior
         slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
-
         //reset encoders
         slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        //default target
         slideOne.setTargetPosition(0);
 
         //set encoder behavior
@@ -93,9 +92,6 @@ public class slideTestingPID extends LinearOpMode {
         int slidePos = 0;
 
         PIDController slideOneController = new PIDController(slideOnePID[0], slideOnePID[1], slideOnePID[2], false);
-
-        //set default target position
-        slideOne.setTargetPosition(0);
 
 
         // Wait for the game to start (driver presses PLAY)

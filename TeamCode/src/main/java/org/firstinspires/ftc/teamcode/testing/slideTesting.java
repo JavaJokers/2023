@@ -71,6 +71,8 @@ public class slideTesting extends LinearOpMode {
     private boolean wasB = false;
     private boolean wasUp = false;
     private boolean wasDown = false;
+    int target = 0;
+    int ticksToInches = 0;
 
 
 
@@ -89,10 +91,10 @@ public class slideTesting extends LinearOpMode {
 
         slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //servo setting
+        //default target
+        slideOne.setTargetPosition(0);
 
-
-slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
 
@@ -103,7 +105,14 @@ slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            slideOne.setPower(-gamepad1.left_stick_y / 10);
+            if ((isA = gamepad1.a) && !wasA) {
+                target++;
+            }
+            if ((isB = gamepad1.b) && !wasB) {
+                target--;
+            }
+
+            slideOne.setTargetPosition(target);
 
 
 
@@ -112,8 +121,8 @@ slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
-
-            telemetry.addData("Slide Power", slideOne.getPower());
+            telemetry.addData("Slide Pos", slideOne.getCurrentPosition());
+            telemetry.addData("Slide Target", slideOne.getTargetPosition());
             telemetry.update();
         }
     }
