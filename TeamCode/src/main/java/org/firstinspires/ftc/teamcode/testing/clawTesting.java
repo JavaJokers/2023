@@ -29,6 +29,11 @@
 
 package org.firstinspires.ftc.teamcode.testing;
 
+import static org.firstinspires.ftc.teamcode.constants.servos.clawClosedLeft;
+import static org.firstinspires.ftc.teamcode.constants.servos.clawClosedRight;
+import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenLeft;
+import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenRight;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -54,10 +59,6 @@ public class clawTesting extends LinearOpMode {
 
 
 
-    public static final double clawOpenLeft = 0.0;
-    public static final double clawOpenRight = 0.0;
-    public static final double clawClosedLeft = -0.05;
-    public static final double clawClosedRight = -0.05;
 
 
 
