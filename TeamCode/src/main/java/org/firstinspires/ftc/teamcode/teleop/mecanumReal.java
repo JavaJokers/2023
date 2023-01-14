@@ -36,6 +36,7 @@ import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenLeft;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenRight;
 import static org.firstinspires.ftc.teamcode.constants.slides.slidePosArray;
 import static org.firstinspires.ftc.teamcode.constants.slides.slideOnePID;
+import static org.firstinspires.ftc.teamcode.constants.drive.driveSpeed;
 import static org.firstinspires.ftc.teamcode.constants.slides.slideTwoPID;
 import static org.firstinspires.ftc.teamcode.constants.motors;
 
@@ -250,10 +251,10 @@ public class mecanumReal extends LinearOpMode {
         lB.setPower(backLeftPower * 0.25);
         rB.setPower(backRightPower * 0.25);
       } else {
-        lF.setPower(frontLeftPower);
-        rF.setPower(frontRightPower);
-        lB.setPower(backLeftPower);
-        rB.setPower(backRightPower);
+        lF.setPower(frontLeftPower * driveSpeed);
+        rF.setPower(frontRightPower * driveSpeed);
+        lB.setPower(backLeftPower * driveSpeed);
+        rB.setPower(backRightPower * driveSpeed);
       }
 
       // reinitialize field oriented

@@ -31,4 +31,8 @@ public final class constants {
         Servo clawLeft = hardwareMap.servo.get("claw_left");
         Servo clawRight = hardwareMap.servo.get("claw_right");
     }
+
+    public static final class drive{
+        public static final double driveSpeed = 1;
+    }
 }
