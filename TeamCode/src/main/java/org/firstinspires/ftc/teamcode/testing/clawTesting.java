@@ -75,9 +75,9 @@ public class clawTesting extends LinearOpMode {
 
 
         //servo setting
-       // clawLeft.scaleRange(0.0, 0.2);
+        clawLeft.scaleRange(clawOpenLeft, clawClosedLeft);
         clawLeft.setDirection(Servo.Direction.REVERSE);
-       // clawRight.scaleRange(0.0, 0.2);
+        clawRight.scaleRange(clawOpenRight, clawClosedRight);
         clawRight.setDirection(Servo.Direction.FORWARD);
 
 

@@ -54,6 +54,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.PIDController;
+import org.firstinspires.ftc.teamcode.commands.servoCommand;
 
 @TeleOp(name = "mecanumReal", group = "Competition")
 // @Disabled
@@ -118,9 +119,9 @@ public class mecanumReal extends LinearOpMode {
     slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     //servo setting
-    clawLeft.scaleRange(0.0, 0.2);
+    clawLeft.scaleRange(0.0, 0.25);
     clawLeft.setDirection(Servo.Direction.REVERSE);
-    clawRight.scaleRange(0.0, 0.2);
+    clawRight.scaleRange(0.0, 0.25);
     clawRight.setDirection(Servo.Direction.FORWARD);
 
 
@@ -136,15 +137,13 @@ public class mecanumReal extends LinearOpMode {
     PIDController slideOneController = new PIDController(slideOnePID[0], slideOnePID[1], slideOnePID[2], false);
 
     //set default target position
-    slideOne.setTargetPosition(0);
+    slideOne.setTargetPosition(slidePosArray[0]);
 
-    clawLeft.setPosition(clawOpenLeft);
-    clawRight.setPosition(clawOpenRight);
+   servoCommand.clawOpen(clawLeft, clawRight);
 
     sleep(5000);
 
-    clawLeft.setPosition(clawClosedLeft);
-    clawRight.setPosition(clawClosedRight);
+    servoCommand.clawClose(clawLeft, clawRight);
 
     // Wait for the game to start (driver presses PLAY)
     waitForStart();
@@ -167,7 +166,7 @@ public class mecanumReal extends LinearOpMode {
         }
         //high
         else if ((isB = gamepad1.b) && !wasB) {
-          slidePos = 3;
+          slidePos = 1;
         }
         //medium
         else if ((isX = gamepad1.x) && !wasX) {
@@ -175,7 +174,7 @@ public class mecanumReal extends LinearOpMode {
         }
         //low
         else if ((isY = gamepad1.y) && !wasY) {
-          slidePos = 1;
+          slidePos = 3;
         }
         //sets target position to determined state
         slideOne.setTargetPosition(slidePosArray[slidePos]);
@@ -205,11 +204,9 @@ public class mecanumReal extends LinearOpMode {
 
 
       if(gamepad1.right_trigger == 1){
-        clawLeft.setPosition(clawClosedLeft);
-        clawRight.setPosition(clawClosedRight);
+        servoCommand.clawClose(clawLeft, clawRight);
       } else if(gamepad1.left_trigger == 1){
-        clawLeft.setPosition(clawOpenLeft);
-        clawRight.setPosition(clawOpenRight);
+        servoCommand.clawOpen(clawLeft, clawRight);
       }
 
 
