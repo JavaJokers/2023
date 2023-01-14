@@ -71,13 +71,9 @@ public class clawTesting extends LinearOpMode {
         Servo clawRight = hardwareMap.servo.get("claw_right");
 
 
-        // Set motor directions
-
 
         //servo setting
-        clawLeft.scaleRange(clawOpenLeft, clawClosedLeft);
         clawLeft.setDirection(Servo.Direction.REVERSE);
-        clawRight.scaleRange(clawOpenRight, clawClosedRight);
         clawRight.setDirection(Servo.Direction.FORWARD);
 
 

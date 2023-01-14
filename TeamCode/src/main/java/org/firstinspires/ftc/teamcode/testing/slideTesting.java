@@ -54,9 +54,6 @@ public class slideTesting extends LinearOpMode {
 
 
 
-    public static final double clawOpen = 0.2;
-    public static final double clawClosed = 0.5;
-
     private boolean autoSlides = true;
 
     //button press
@@ -81,8 +78,7 @@ public class slideTesting extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // Declare OpMode members.
         DcMotor slideOne = hardwareMap.dcMotor.get("slide_one");
-        Servo clawLeft = hardwareMap.servo.get("claw_left");
-        Servo clawRight = hardwareMap.servo.get("claw_right");
+
 
 
         // Set motor directions
@@ -94,22 +90,12 @@ public class slideTesting extends LinearOpMode {
         slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //servo setting
-        clawLeft.scaleRange(0.0, 0.2);
-        clawLeft.setDirection(Servo.Direction.REVERSE);
-        clawRight.scaleRange(0.0, 0.2);
-        clawRight.setDirection(Servo.Direction.FORWARD);
+
 
 slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
-        clawLeft.setPosition(clawOpen);
-        clawRight.setPosition(clawOpen);
-
-        sleep(5000);
-
-        clawLeft.setPosition(clawClosed);
-        clawRight.setPosition(clawClosed);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -117,30 +103,17 @@ slideOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            slideOne.setPower(-gamepad1.left_stick_y);
-
-
-            if(gamepad1.right_trigger == 1){
-                clawLeft.setPosition(clawClosed);
-                clawRight.setPosition(clawClosed);
-            } else if(gamepad1.left_trigger == 1){
-                clawLeft.setPosition(clawOpen);
-                clawRight.setPosition(clawOpen);
-            }
+            slideOne.setPower(-gamepad1.left_stick_y / 100);
 
 
 
 
-            //one button press does one thing
-            wasA = isA;
-            wasX = isX;
-            wasY = isY;
-            wasB = isB;
-            wasUp = isUp;
-            wasDown = isDown;
 
-            telemetry.addData("Slide 1 Target:", slideOne.getCurrentPosition());
-            telemetry.addData("AutoSlides:", autoSlides);
+
+
+
+
+            telemetry.addData("Slide Power", slideOne.getPower());
             telemetry.update();
         }
     }

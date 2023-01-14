@@ -29,12 +29,15 @@
 
 package org.firstinspires.ftc.teamcode.teleop;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawClosedLeft;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawClosedRight;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenLeft;
 import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenRight;
 import static org.firstinspires.ftc.teamcode.constants.slides.slidePosArray;
 import static org.firstinspires.ftc.teamcode.constants.slides.slideOnePID;
+import static org.firstinspires.ftc.teamcode.constants.slides.slideTwoPID;
+import static org.firstinspires.ftc.teamcode.constants.motors;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
@@ -89,6 +92,7 @@ public class mecanumReal extends LinearOpMode {
   @Override
   public void runOpMode() throws InterruptedException {
     // Declare OpMode members.
+
     DcMotor lF = hardwareMap.dcMotor.get("front_left");
     DcMotor lB = hardwareMap.dcMotor.get("back_left");
     DcMotor rF = hardwareMap.dcMotor.get("front_right");
@@ -119,9 +123,7 @@ public class mecanumReal extends LinearOpMode {
     slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     //servo setting
-    clawLeft.scaleRange(0.0, 0.25);
     clawLeft.setDirection(Servo.Direction.REVERSE);
-    clawRight.scaleRange(0.0, 0.25);
     clawRight.setDirection(Servo.Direction.FORWARD);
 
 
