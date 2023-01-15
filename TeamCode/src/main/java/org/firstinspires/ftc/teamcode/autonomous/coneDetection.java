@@ -127,7 +127,7 @@ public class coneDetection extends LinearOpMode {
 
         //reset encoders
         slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
+        slideOne.setTargetPosition(0);
         //set encoder behavior
         slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -135,9 +135,6 @@ public class coneDetection extends LinearOpMode {
         int slidePos = 0;
 
         PIDController slideOneController = new PIDController(slideOnePID[0], slideOnePID[1], slideOnePID[2], false);
-
-        //set default target position
-        slideOne.setTargetPosition(slidePosArray[0]);
 
         servoCommand.clawOpen(clawLeft, clawRight);
 
