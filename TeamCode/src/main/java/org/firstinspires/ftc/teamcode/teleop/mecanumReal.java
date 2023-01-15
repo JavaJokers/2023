@@ -169,7 +169,7 @@ public class mecanumReal extends LinearOpMode {
         }
         //high
         else if ((isB = gamepad1.b) && !wasB) {
-          slidePos = 1;
+          slidePos = 3;
         }
         //medium
         else if ((isY = gamepad1.y) && !wasY) {
@@ -177,7 +177,7 @@ public class mecanumReal extends LinearOpMode {
         }
         //low
         else if ((isX = gamepad1.x) && !wasX) {
-          slidePos = 3;
+          slidePos = 1;
         }
         //sets target position to determined state
         slideOne.setTargetPosition(slidePosArray[slidePos]);
@@ -201,11 +201,10 @@ public class mecanumReal extends LinearOpMode {
         slideOne.getCurrentPosition()
       );
 
-
-      // assign motor the PID output
       slideOne.setPower(slideOnePower);
 
 
+      // assign motor the PID output
       if(gamepad1.right_trigger == 1){
         servoCommand.clawClose(clawLeft, clawRight);
       } else if(gamepad1.left_trigger == 1){
