@@ -172,11 +172,11 @@ public class mecanumReal extends LinearOpMode {
           slidePos = 1;
         }
         //medium
-        else if ((isX = gamepad1.x) && !wasX) {
+        else if ((isY = gamepad1.y) && !wasY) {
           slidePos = 2;
         }
         //low
-        else if ((isY = gamepad1.y) && !wasY) {
+        else if ((isX = gamepad1.x) && !wasX) {
           slidePos = 3;
         }
         //sets target position to determined state

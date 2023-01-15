@@ -16,6 +16,7 @@ public final class constants {
 
     public static final class slides{
         public static final int[] slidePosArray = { 0, 33, 50, 100 };
+        public static final double ticksToInches = 200;
 
     public static final double slideOnePID[] = {1, 0.0, 0.0};
     public static final double slideTwoPID[] = {1, 0.0, 0.0};

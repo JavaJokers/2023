@@ -34,6 +34,7 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -48,9 +49,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.PIDController;
 
-@TeleOp(name = "slideTesting", group = "Testing")
+@TeleOp(name = "colorTesting", group = "Testing")
 // @Disabled
-public class slideTesting extends LinearOpMode {
+public class colorTesting extends LinearOpMode {
 
 
 
@@ -72,47 +73,28 @@ public class slideTesting extends LinearOpMode {
     private boolean wasUp = false;
     private boolean wasDown = false;
     int target = 0;
+    int ticksToInches = 0;
 
 
 
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare OpMode members.
-        DcMotor slideOne = hardwareMap.dcMotor.get("slide_one");
+        ColorSensor colorSensor = hardwareMap.colorSensor.get("color_sensor");
 
 
 
-        // Set motor directions
 
-        slideOne.setDirection(DcMotor.Direction.REVERSE);
-
-        // Set zero power behavior
-
-        slideOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        //default target
-        slideOne.setTargetPosition(0);
-
-        slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
 
 
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
-        // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-
-            if ((isA = gamepad1.a) && !wasA) {
-                target++;
-            }
-            if ((isB = gamepad1.b) && !wasB) {
-                target--;
-            }
-
-            slideOne.setTargetPosition(target);
-            slideOne.setPower(slideOne.getTargetPosition() - slideOne.getCurrentPosition());
+while(true){
+        int red = colorSensor.red();
+        int green = colorSensor.green();
+       int blue = colorSensor.blue();
 
 
 
@@ -120,10 +102,11 @@ public class slideTesting extends LinearOpMode {
 
 
 
-
-            telemetry.addData("Slide Pos", slideOne.getCurrentPosition());
-            telemetry.addData("Slide Target", slideOne.getTargetPosition());
+telemetry.addData("Red: ", red);
+            telemetry.addData("Green: ", green);
+            telemetry.addData("Blue: ", blue);
             telemetry.update();
         }
     }
-}
+    }
+
