@@ -201,10 +201,9 @@ public class mecanumReal extends LinearOpMode {
         slideOne.getCurrentPosition()
       );
 
+      //assign motor the Pid output
       slideOne.setPower(slideOnePower);
 
-
-      // assign motor the PID output
       if(gamepad1.right_trigger == 1){
         servoCommand.clawClose(clawLeft, clawRight);
       } else if(gamepad1.left_trigger == 1){
