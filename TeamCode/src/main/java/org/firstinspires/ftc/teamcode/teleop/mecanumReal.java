@@ -226,7 +226,7 @@ public class mecanumReal extends LinearOpMode {
       // set gamepad values
       double x = gamepad1.left_stick_x * 1.1;
       double y = -gamepad1.left_stick_y;
-      double t = gamepad1.right_stick_x * 0.5;
+      double t = gamepad1.right_stick_x;
       double botHeading = -imu.getAngularOrientation().firstAngle;
 
       // rotation
@@ -236,23 +236,18 @@ public class mecanumReal extends LinearOpMode {
         x * Math.sin(botHeading) + y * Math.cos(botHeading);
 
       // x, y, theta input mixing
-      double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(t), 1);
+      double denominator = Math.max(Math.abs(y_rotated) + Math.abs(x_rotated) + Math.abs(t), 1);
       frontLeftPower = (y + x + t) / denominator;
       backLeftPower = (y - x + t) / denominator;
       frontRightPower = (y - x - t) / denominator;
       backRightPower = (y + x - t) / denominator;
 
       // Send calculated power to motors
-      if (gamepad1.right_bumper) {
-        lF.setPower(frontLeftPower * 0.75);
-        rF.setPower(frontRightPower * 0.75);
-        lB.setPower(backLeftPower * 0.75);
-        rB.setPower(backRightPower * 0.75);
-      } else if (gamepad1.left_bumper) {
-        lF.setPower(frontLeftPower * 0.25);
-        rF.setPower(frontRightPower * 0.25);
-        lB.setPower(backLeftPower * 0.25);
-        rB.setPower(backRightPower * 0.25);
+      if (gamepad1.left_bumper) {
+        lF.setPower(frontLeftPower * 0.15);
+        rF.setPower(frontRightPower * 0.15);
+        lB.setPower(backLeftPower * 0.15);
+        rB.setPower(backRightPower * 0.15);
       } else {
         lF.setPower(frontLeftPower * speed);
         rF.setPower(frontRightPower * speed);
@@ -268,7 +263,7 @@ public class mecanumReal extends LinearOpMode {
 
 
       // reinitialize field oriented
-      if (gamepad1.left_stick_button && gamepad1.right_stick_button) {
+      if (gamepad1.right_bumper) {
         imu.initialize(parameters);
       }
 
@@ -283,6 +278,7 @@ public class mecanumReal extends LinearOpMode {
 
 
       telemetry.addData("Speed: ", speed);
+      telemetry.addData("Heading: ", botHeading);
       telemetry.addData("Slide One Position:", slideOne.getCurrentPosition());
       telemetry.addData("Slide 1 Target:", slideOne.getTargetPosition());
       telemetry.addData("Slide 1 Height (in):", slideOne.getCurrentPosition() / 130);
