@@ -155,37 +155,27 @@ public class mecanumReal extends LinearOpMode {
     // run until the end of the match (driver presses STOP)
     while (opModeIsActive()) {
 
-      //change autoSlides setting
-      if (gamepad1.dpad_left) {
-        autoSlides = false;
-      } else if (gamepad1.dpad_right) {
-        autoSlides = true;
-      }
-
-      //autoSlides on
-      if (autoSlides) {
         //ground
         if ((isA = gamepad1.a) && !wasA) {
           slidePos = 0;
+          slideOne.setTargetPosition(slidePosArray[slidePos]);
         }
         //high
         else if ((isB = gamepad1.b) && !wasB) {
           slidePos = 3;
+          slideOne.setTargetPosition(slidePosArray[slidePos]);
         }
         //medium
         else if ((isY = gamepad1.y) && !wasY) {
           slidePos = 2;
+          slideOne.setTargetPosition(slidePosArray[slidePos]);
         }
         //low
         else if ((isX = gamepad1.x) && !wasX) {
           slidePos = 1;
+          slideOne.setTargetPosition(slidePosArray[slidePos]);
         }
-        //sets target position to determined state
-        slideOne.setTargetPosition(slidePosArray[slidePos]);
-      }
 
-      //auto slides off
-      else {
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
           slideOne.setTargetPosition(slideOne.getTargetPosition() + 130);
@@ -194,7 +184,6 @@ public class mecanumReal extends LinearOpMode {
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
           slideOne.setTargetPosition(slideOne.getTargetPosition() - 130);
         }
-      }
 
       // call "update" method and prepare motorPower
       double slideOnePower = slideOneController.update(
