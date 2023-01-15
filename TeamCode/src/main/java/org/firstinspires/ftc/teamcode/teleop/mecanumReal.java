@@ -110,10 +110,10 @@ public class mecanumReal extends LinearOpMode {
     telemetry.update();
 
     // Set motor directions
-    lF.setDirection(DcMotor.Direction.FORWARD);
+    lF.setDirection(DcMotor.Direction.REVERSE);
     rF.setDirection(DcMotor.Direction.REVERSE);
     lB.setDirection(DcMotor.Direction.FORWARD);
-    rB.setDirection(DcMotor.Direction.REVERSE);
+    rB.setDirection(DcMotor.Direction.FORWARD);
     slideOne.setDirection(DcMotor.Direction.REVERSE);
 
     // Set zero power behavior
