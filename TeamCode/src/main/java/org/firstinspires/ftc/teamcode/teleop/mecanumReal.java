@@ -135,7 +135,7 @@ public class mecanumReal extends LinearOpMode {
 
     //reset encoders
     slideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
+    slideOne.setTargetPosition(slidePosArray[0]);
     //set encoder behavior
     slideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -192,11 +192,11 @@ public class mecanumReal extends LinearOpMode {
       else {
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
+          slideOne.setTargetPosition(slideOne.getTargetPosition() + 400);
         }
         //manual slides down
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() - 1);
+          slideOne.setTargetPosition(slideOne.getTargetPosition() - 400);
         }
       }
 
@@ -280,9 +280,12 @@ public class mecanumReal extends LinearOpMode {
       wasUp = isUp;
       wasDown = isDown;
 
-      telemetry.addData("Slide 1 Ticks:", slideOneTicks);
-      telemetry.addData("Slide 1 Power:", slideOnePower);
+
+
+      telemetry.addData("Speed: ", speed);
+      telemetry.addData("Slide One Position:", slideOne.getCurrentPosition());
       telemetry.addData("Slide 1 Target:", slideOne.getTargetPosition());
+      telemetry.addData("Slide 1 Height (in):", slideOne.getCurrentPosition() / 200);
       telemetry.addData("AutoSlides:", autoSlides);
       telemetry.update();
     }
