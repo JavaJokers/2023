@@ -113,6 +113,7 @@ public class slideTesting extends LinearOpMode {
             }
 
             slideOne.setTargetPosition(target);
+            slideOne.setPower(slideOne.getCurrentPosition() - slideOne.getTargetPosition());
 
 
 
