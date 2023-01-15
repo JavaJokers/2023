@@ -108,8 +108,8 @@ public class coneDetection extends LinearOpMode {
         telemetry.update();
 //        // Set motor directions
         lF.setDirection(DcMotor.Direction.FORWARD);
-        rF.setDirection(DcMotor.Direction.FORWARD);
-        lB.setDirection(DcMotor.Direction.REVERSE);
+        rF.setDirection(DcMotor.Direction.REVERSE);
+        lB.setDirection(DcMotor.Direction.FORWARD);
         rB.setDirection(DcMotor.Direction.REVERSE);
         slideOne.setDirection(DcMotor.Direction.REVERSE);
 //

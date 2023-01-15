@@ -116,8 +116,8 @@ public class mecanumReal extends LinearOpMode {
 
     // Set motor directions
     lF.setDirection(DcMotor.Direction.REVERSE);
-    rF.setDirection(DcMotor.Direction.REVERSE);
-    lB.setDirection(DcMotor.Direction.FORWARD);
+    rF.setDirection(DcMotor.Direction.FORWARD);
+    lB.setDirection(DcMotor.Direction.REVERSE);
     rB.setDirection(DcMotor.Direction.FORWARD);
     slideOne.setDirection(DcMotor.Direction.REVERSE);
 
@@ -192,11 +192,11 @@ public class mecanumReal extends LinearOpMode {
       else {
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() + 400);
+          slideOne.setTargetPosition(slideOne.getTargetPosition() + 200);
         }
         //manual slides down
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() - 400);
+          slideOne.setTargetPosition(slideOne.getTargetPosition() - 200);
         }
       }
 
