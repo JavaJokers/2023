@@ -244,10 +244,10 @@ public class mecanumReal extends LinearOpMode {
 
       // Send calculated power to motors
       if (gamepad1.left_bumper) {
-        lF.setPower(frontLeftPower * 0.15);
-        rF.setPower(frontRightPower * 0.15);
-        lB.setPower(backLeftPower * 0.15);
-        rB.setPower(backRightPower * 0.15);
+        lF.setPower(frontLeftPower * speed * 0.25);
+        rF.setPower(frontRightPower * speed * 0.25);
+        lB.setPower(backLeftPower * speed * 0.25);
+        rB.setPower(backRightPower * speed * 0.25);
       } else {
         lF.setPower(frontLeftPower * speed);
         rF.setPower(frontRightPower * speed);
@@ -274,6 +274,8 @@ public class mecanumReal extends LinearOpMode {
       wasB = isB;
       wasUp = isUp;
       wasDown = isDown;
+      speedWasUp = speedIsUp;
+      speedWasDown = speedIsDown;
 
 
 
