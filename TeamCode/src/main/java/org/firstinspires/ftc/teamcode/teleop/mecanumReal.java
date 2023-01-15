@@ -192,11 +192,11 @@ public class mecanumReal extends LinearOpMode {
       else {
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() + 200);
+          slideOne.setTargetPosition(slideOne.getTargetPosition() + 130);
         }
         //manual slides down
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() - 200);
+          slideOne.setTargetPosition(slideOne.getTargetPosition() - 130);
         }
       }
 
