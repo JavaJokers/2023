@@ -34,6 +34,6 @@ public final class constants {
     }
 
     public static final class drive{
-        public static final double driveSpeed = 1;
+        public static final double driveSpeed = 0.7;
     }
 }

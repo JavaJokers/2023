@@ -65,6 +65,7 @@ import org.firstinspires.ftc.teamcode.commands.servoCommand;
 public class mecanumReal extends LinearOpMode {
 
   int slideOneTicks = 0;
+  double speed = 0.7;
 
 
   public static Orientation angles;
@@ -79,6 +80,8 @@ public class mecanumReal extends LinearOpMode {
   private boolean isB = false;
   private boolean isUp = false;
   private boolean isDown = false;
+  private boolean speedIsDown = false;
+  private boolean speedIsUp = false;
 
   //button press stuff
   private boolean wasX = false;
@@ -87,6 +90,8 @@ public class mecanumReal extends LinearOpMode {
   private boolean wasB = false;
   private boolean wasUp = false;
   private boolean wasDown = false;
+  private boolean speedWasUp = false;
+  private boolean speedWasDown = false;
 
 
 
@@ -249,11 +254,18 @@ public class mecanumReal extends LinearOpMode {
         lB.setPower(backLeftPower * 0.25);
         rB.setPower(backRightPower * 0.25);
       } else {
-        lF.setPower(frontLeftPower * driveSpeed);
-        rF.setPower(frontRightPower * driveSpeed);
-        lB.setPower(backLeftPower * driveSpeed);
-        rB.setPower(backRightPower * driveSpeed);
+        lF.setPower(frontLeftPower * speed);
+        rF.setPower(frontRightPower * speed);
+        lB.setPower(backLeftPower * speed);
+        rB.setPower(backRightPower * speed);
       }
+
+      if((speedIsDown = gamepad2.dpad_down) && !speedWasDown){
+        speed -= 0.1;
+      } else if((speedIsUp = gamepad2.dpad_up) && !speedWasUp){
+        speed += 0.1;
+      }
+
 
       // reinitialize field oriented
       if (gamepad1.left_stick_button && gamepad1.right_stick_button) {
