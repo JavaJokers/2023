@@ -121,9 +121,9 @@ public class coneDetection extends LinearOpMode {
 
 if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()){
     autoCommands.strafeLeft(lF, lB, rF, rB, 0.4, 500);
-}else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
+}else if(colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
     autoCommands.driveForward(lF, lB, rF, rB, 0.4, 500);
-} else if(colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
+} else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
     autoCommands.strafeRight(lF, lB, rF, rB, 0.4, 500);
 }
         autoCommands.stop(lF, lB, rF, rB);
