@@ -157,32 +157,38 @@ public class mecanumReal extends LinearOpMode {
 
         //ground
         if ((isA = gamepad1.a) && !wasA) {
-          slidePos = 0;
-          slideOne.setTargetPosition(slidePosArray[slidePos]);
+          slideOne.setTargetPosition(slidePosArray[0]);
         }
         //high
         else if ((isB = gamepad1.b) && !wasB) {
-          slidePos = 3;
-          slideOne.setTargetPosition(slidePosArray[slidePos]);
+          slideOne.setTargetPosition(slidePosArray[3]);
         }
         //medium
         else if ((isY = gamepad1.y) && !wasY) {
-          slidePos = 2;
-          slideOne.setTargetPosition(slidePosArray[slidePos]);
+          slideOne.setTargetPosition(slidePosArray[2]);
         }
         //low
         else if ((isX = gamepad1.x) && !wasX) {
-          slidePos = 1;
-          slideOne.setTargetPosition(slidePosArray[slidePos]);
+          slideOne.setTargetPosition(slidePosArray[1]);
         }
 
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() + 130);
+          if (slideOne.getTargetPosition() >= 4355) {
+            slideOne.setTargetPosition(4355);
+          }
+          else {
+            slideOne.setTargetPosition(slideOne.getTargetPosition() + 130);
+          }
         }
         //manual slides down
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
-          slideOne.setTargetPosition(slideOne.getTargetPosition() - 130);
+          if (slideOne.getTargetPosition() <= 0) {
+            slideOne.setTargetPosition(0);
+          }
+          else {
+            slideOne.setTargetPosition(slideOne.getTargetPosition() - 130);
+          }
         }
 
       // call "update" method and prepare motorPower
