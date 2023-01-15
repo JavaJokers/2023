@@ -178,6 +178,7 @@ if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.gre
     autoCommands.stop(lF, lB, rF, rB);
 }
         autoCommands.stop(lF, lB, rF, rB);
+servoCommand.clawClose(clawLeft, clawRight);
         telemetry.update();
 
     }

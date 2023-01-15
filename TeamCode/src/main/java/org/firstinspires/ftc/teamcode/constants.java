@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public final class constants {
 
     public static final class servos{
-        public static final double clawOpenLeft = 0.0;
-        public static final double clawOpenRight = 0.0;
+        public static final double clawOpenLeft = 0.005;
+        public static final double clawOpenRight = 0.005;
         public static final double clawClosedLeft = 0.025;
         public static final double clawClosedRight = 0.025;
     }

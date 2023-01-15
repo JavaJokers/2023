@@ -147,10 +147,6 @@ public class mecanumReal extends LinearOpMode {
     //set default target position
     slideOne.setTargetPosition(slidePosArray[0]);
 
-   servoCommand.clawOpen(clawLeft, clawRight);
-
-    sleep(5000);
-
     servoCommand.clawClose(clawLeft, clawRight);
 
     // Wait for the game to start (driver presses PLAY)
