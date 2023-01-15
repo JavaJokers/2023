@@ -285,7 +285,7 @@ public class mecanumReal extends LinearOpMode {
       telemetry.addData("Speed: ", speed);
       telemetry.addData("Slide One Position:", slideOne.getCurrentPosition());
       telemetry.addData("Slide 1 Target:", slideOne.getTargetPosition());
-      telemetry.addData("Slide 1 Height (in):", slideOne.getCurrentPosition() / 200);
+      telemetry.addData("Slide 1 Height (in):", slideOne.getCurrentPosition() / 130);
       telemetry.addData("AutoSlides:", autoSlides);
       telemetry.update();
     }
