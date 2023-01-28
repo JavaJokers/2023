@@ -228,10 +228,10 @@ public class mecanumReal extends LinearOpMode {
 
       // x, y, theta input mixing
       double denominator = Math.max(Math.abs(y_rotated) + Math.abs(x_rotated) + Math.abs(t), 1);
-      frontLeftPower = (y + x + t) / denominator;
-      backLeftPower = (y - x + t) / denominator;
-      frontRightPower = (y - x - t) / denominator;
-      backRightPower = (y + x - t) / denominator;
+      frontLeftPower = (y_rotated + x_rotated + t) / denominator;
+      backLeftPower = (y_rotated - x_rotated + t) / denominator;
+      frontRightPower = (y_rotated - x_rotated - t) / denominator;
+      backRightPower = (y_rotated + x_rotated - t) / denominator;
 
       // Send calculated power to motors
       if (gamepad1.left_bumper) {
