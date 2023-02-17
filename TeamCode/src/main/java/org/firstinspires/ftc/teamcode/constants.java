@@ -8,15 +8,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 public final class constants {
 
     public static final class servos{
-        public static final double clawOpenLeft = 0.005;
-        public static final double clawOpenRight = 0.005;
-        public static final double clawClosedLeft = 0.025;
-        public static final double clawClosedRight = 0.025;
+        public static final double clawOpenLeft = 0.0;
+        public static final double clawOpenRight = 0.0;
+        public static final double clawClosedLeft = 0.07;
+        public static final double clawClosedRight = 0.07;
     }
 
     public static final class slides{
         public static final double ticksToInches = 200;
-        public static final int[] slidePosArray = { 0, 1715, 3055, 4155 };
+        public static final int[] slidePosArray = { 0,1, 50, 100};
 
     public static final double slideOnePID[] = {1, 0.0, 0.2};
     public static final double slideTwoPID[] = {1, 0.0, 0.2};

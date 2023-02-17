@@ -178,7 +178,7 @@ public class mecanumReal extends LinearOpMode {
             slideOne.setTargetPosition(4355);
           }
           else {
-            slideOne.setTargetPosition(slideOne.getTargetPosition() + 130);
+            slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
           }
         }
         //manual slides down
@@ -187,7 +187,7 @@ public class mecanumReal extends LinearOpMode {
             slideOne.setTargetPosition(0);
           }
           else {
-            slideOne.setTargetPosition(slideOne.getTargetPosition() - 130);
+            slideOne.setTargetPosition(slideOne.getTargetPosition() - 1);
           }
         }
 
