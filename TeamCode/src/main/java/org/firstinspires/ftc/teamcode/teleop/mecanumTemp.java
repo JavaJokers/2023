@@ -153,11 +153,18 @@ public class mecanumTemp extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            slideOne.setPower(-gamepad2.left_stick_y * 0.7);
+            if(gamepad2.right_bumper) {
+                slideOne.setPower(0.075);
+            } else if(gamepad2.left_bumper) {
+                slideOne.setPower(0.15);
+            } else {
+                slideOne.setPower(-gamepad2.left_stick_y * 0.7);
+            }
 
-            if(gamepad1.right_trigger == 1){
+
+            if(gamepad1.right_trigger == 1 || gamepad2.right_trigger == 1){
                 servoCommand.clawClose(clawLeft, clawRight);
-            } else if(gamepad1.left_trigger == 1){
+            } else if(gamepad1.left_trigger == 1 || gamepad2.left_trigger == 1){
                 servoCommand.clawOpen(clawLeft, clawRight);
             }
 

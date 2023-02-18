@@ -78,7 +78,7 @@ import org.firstinspires.ftc.teamcode.commands.servoCommand;
 
 
 
-@Autonomous(name="coneDetection", group="Auto", preselectTeleOp = "mecanumReal")
+@Autonomous(name="coneDetection", group="Auto", preselectTeleOp = "mecanumTemp")
 public class coneDetection extends LinearOpMode {
 
     //    /* Declare OpMode members. */
@@ -149,8 +149,8 @@ public class coneDetection extends LinearOpMode {
         waitForStart();
 
 //
-       autoCommands.driveForward(lF, lB, rF, rB, 0.5);
-        sleep(525);
+       autoCommands.driveForward(lF, lB, rF, rB, 0.4);
+        sleep(700);
         autoCommands.stop(lF, lB, rF, rB);
         sleep(1000);
 
@@ -158,7 +158,7 @@ if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.gre
     telemetry.addData("Color Red: ", colorSensor.red());
     telemetry.update();
     autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-    sleep(550);
+    sleep(500);
     autoCommands.strafeLeft(lF, lB, rF, rB, 0.4);
     sleep(1650);
     autoCommands.stop(lF, lB, rF, rB);
@@ -166,13 +166,13 @@ if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.gre
     telemetry.addData("Color Green: ", colorSensor.green());
     telemetry.update();
     autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-    sleep(550);
+    sleep(500);
     autoCommands.stop(lF, lB, rF, rB);
 } else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
     telemetry.addData("Color Blue: ", colorSensor.blue());
     telemetry.update();
     autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-    sleep(550);
+    sleep(500);
     autoCommands.strafeRight(lF, lB, rF, rB, 0.4);
     sleep(1650);
     autoCommands.stop(lF, lB, rF, rB);
