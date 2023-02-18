@@ -18,8 +18,8 @@ public class autoCommands {
     public static void driveForward(DcMotor lF, DcMotor lB, DcMotor rF, DcMotor rB, double speed) {
         lF.setPower(speed);
         lB.setPower(speed);
-        rF.setPower(speed);
-        rB.setPower(speed);
+        rF.setPower(speed * 1.2);
+        rB.setPower(speed * 1.2);
     }
 
     public static void driveBackward(DcMotor lF, DcMotor lB, DcMotor rF, DcMotor rB, double speed) {

@@ -150,31 +150,40 @@ public class coneDetection extends LinearOpMode {
 
 //
        autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-        sleep(700);
+        sleep(900);
         autoCommands.stop(lF, lB, rF, rB);
         sleep(1000);
 
 if(colorSensor.red() > colorSensor.blue() && colorSensor.red() > colorSensor.green()){
     telemetry.addData("Color Red: ", colorSensor.red());
     telemetry.update();
+    slideOne.setPower(0.7);
+    sleep(300);
+    slideOne.setPower(0.15);
     autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-    sleep(500);
+    sleep(200);
     autoCommands.strafeLeft(lF, lB, rF, rB, 0.4);
-    sleep(1650);
+    sleep(1500);
     autoCommands.stop(lF, lB, rF, rB);
 }else if(colorSensor.green() > colorSensor.red() && colorSensor.green() > colorSensor.blue()){
     telemetry.addData("Color Green: ", colorSensor.green());
     telemetry.update();
+    slideOne.setPower(0.7);
+    sleep(300);
+    slideOne.setPower(0.15);
     autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-    sleep(500);
+    sleep(200);
     autoCommands.stop(lF, lB, rF, rB);
 } else if(colorSensor.blue() > colorSensor.red() && colorSensor.blue() > colorSensor.green()){
     telemetry.addData("Color Blue: ", colorSensor.blue());
     telemetry.update();
+    slideOne.setPower(0.7);
+    sleep(300);
+    slideOne.setPower(0.15);
     autoCommands.driveForward(lF, lB, rF, rB, 0.4);
-    sleep(500);
+    sleep(300);
     autoCommands.strafeRight(lF, lB, rF, rB, 0.4);
-    sleep(1650);
+    sleep(1500);
     autoCommands.stop(lF, lB, rF, rB);
 }
         autoCommands.stop(lF, lB, rF, rB);
