@@ -37,7 +37,6 @@ import static org.firstinspires.ftc.teamcode.constants.servos.clawOpenRight;
 import static org.firstinspires.ftc.teamcode.constants.slides.slidePosArray;
 import static org.firstinspires.ftc.teamcode.constants.slides.slideOnePID;
 import static org.firstinspires.ftc.teamcode.constants.drive.driveSpeed;
-import static org.firstinspires.ftc.teamcode.constants.slides.slideTwoPID;
 import static org.firstinspires.ftc.teamcode.constants.motors;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -174,20 +173,26 @@ public class mecanumReal extends LinearOpMode {
 
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
-          if (slideOne.getTargetPosition() >= 4355) {
-            slideOne.setTargetPosition(4355);
+          if (slideOne.getTargetPosition() >= 20) {
+            slideOne.setTargetPosition(20);
           }
           else {
             slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
+            /*if (slideOne.getTargetPosition() == 0 || slideOne.getTargetPosition() == 1 || slideOne.getTargetPosition() == 2 || slideOne.getTargetPosition() == 3) {
+              slideOne.setTargetPosition(4);
+            }*/
           }
         }
         //manual slides down
         else if ((isDown = gamepad1.dpad_down) && !wasDown) {
-          if (slideOne.getTargetPosition() <= 0) {
-            slideOne.setTargetPosition(0);
+          if (slideOne.getTargetPosition() <= -10) {
+            slideOne.setTargetPosition(-10);
           }
           else {
             slideOne.setTargetPosition(slideOne.getTargetPosition() - 1);
+            /*if (slideOne.getTargetPosition() == 0 || slideOne.getTargetPosition() == 1 || slideOne.getTargetPosition() == 2 || slideOne.getTargetPosition() == 3) {
+              slideOne.setTargetPosition(-1);
+            }*/
           }
         }
 

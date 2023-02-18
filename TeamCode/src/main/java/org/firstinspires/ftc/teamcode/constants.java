@@ -16,10 +16,10 @@ public final class constants {
 
     public static final class slides{
         public static final double ticksToInches = 200;
-        public static final int[] slidePosArray = { 0,1, 50, 100};
+        public static final int[] slidePosArray = {0, 1, 2, 3};
 
-    public static final double slideOnePID[] = {1, 0.0, 0.2};
-    public static final double slideTwoPID[] = {1, 0.0, 0.2};
+    //set kP really really low and kD fairly high
+    public static final double slideOnePID[] = {0.01, 0, 0};
     }
 
 
