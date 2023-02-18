@@ -173,14 +173,11 @@ public class mecanumReal extends LinearOpMode {
 
         //manual slides up
         if ((isUp = gamepad1.dpad_up) && !wasUp) {
-          if (slideOne.getTargetPosition() >= 20) {
-            slideOne.setTargetPosition(20);
+          if (slideOne.getTargetPosition() >= 8) {
+            slideOne.setTargetPosition(8);
           }
           else {
             slideOne.setTargetPosition(slideOne.getTargetPosition() + 1);
-            /*if (slideOne.getTargetPosition() == 0 || slideOne.getTargetPosition() == 1 || slideOne.getTargetPosition() == 2 || slideOne.getTargetPosition() == 3) {
-              slideOne.setTargetPosition(4);
-            }*/
           }
         }
         //manual slides down
@@ -190,9 +187,6 @@ public class mecanumReal extends LinearOpMode {
           }
           else {
             slideOne.setTargetPosition(slideOne.getTargetPosition() - 1);
-            /*if (slideOne.getTargetPosition() == 0 || slideOne.getTargetPosition() == 1 || slideOne.getTargetPosition() == 2 || slideOne.getTargetPosition() == 3) {
-              slideOne.setTargetPosition(-1);
-            }*/
           }
         }
 

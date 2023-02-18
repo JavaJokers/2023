@@ -19,7 +19,7 @@ public final class constants {
         public static final int[] slidePosArray = {0, 1, 2, 3};
 
     //set kP really really low and kD fairly high
-    public static final double slideOnePID[] = {0.01, 0, 0};
+    public static final double slideOnePID[] = {0.4, 0, 0};
     }
 
 
